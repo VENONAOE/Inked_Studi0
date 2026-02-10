@@ -41,13 +41,18 @@
         .nav-logo { height: 60px; width: auto; transition: transform 0.3s; }
         .nav-logo:hover { transform: scale(1.05); }
 
-        /* --- HERO --- */
+        /* --- HERO (FONDO ACTUALIZADO) --- */
         .hero {
             height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1598331668826-20cecc596b86?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover; background-position: center; background-attachment: fixed; text-align: center;
+            /* Usamos tu imagen de iStock con un degradado oscuro para legibilidad */
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                              url('https://media.istockphoto.com/id/1144182437/es/vector/patr%C3%B3n-sin-costuras-con-cr%C3%A1neos-micr%C3%B3fonos-y-rosas.jpg?s=612x612&w=0&k=20&c=2NOfCOfG9YtPDnG0g6SW97ixHPLxkrwk0NADaTR_aMI=');
+            background-size: 450px; /* Tamaño del patrón de calaveras */
+            background-repeat: repeat; 
+            background-attachment: fixed; 
+            text-align: center;
         }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 12vw, 8rem); letter-spacing: 15px; text-transform: uppercase; font-weight: 300; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 12vw, 8rem); letter-spacing: 15px; text-transform: uppercase; font-weight: 300; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .hero p { letter-spacing: 8px; font-weight: 100; opacity: 0.9; margin-top: 10px; }
 
         /* --- GALERÍA (FOTOS) --- */
@@ -64,13 +69,13 @@
         .video-card video { width: 100%; border-radius: 4px; filter: brightness(0.7); transition: 0.5s; cursor: pointer; }
         .video-card:hover video { filter: brightness(1); }
 
-        /* --- SECCIÓN PATO & CONTACTO (CORREGIDA) --- */
+        /* --- SECCIÓN PATO & CONTACTO --- */
         .artist-section { padding: 100px 5%; text-align: center; background-color: var(--gris-oscuro); border-top: 1px solid #111; }
         .artist-card { 
             max-width: 450px; margin: 0 auto; padding: 60px 30px; 
             border: 1px solid rgba(255,255,255,0.05); 
             background: #000; border-radius: 2px;
-            backface-visibility: hidden; transform: translateZ(0); /* Estabilizador */
+            backface-visibility: hidden; transform: translateZ(0);
         }
         .artist-photo { 
             width: 150px; height: 150px; border-radius: 50%; object-fit: cover; 
@@ -83,13 +88,11 @@
 
         /* --- BOTONES PREMIUM --- */
         .btn-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        
         .cta-button { 
             display: inline-block; width: 100%; max-width: 280px; padding: 18px; 
             border: 1px solid var(--blanco-hueso); text-decoration: none; 
             color: var(--blanco-hueso); text-transform: uppercase; 
             letter-spacing: 3px; font-size: 0.7rem; transition: 0.3s ease;
-            backface-visibility: hidden;
         }
         .cta-button:hover { background: var(--blanco-hueso); color: var(--negro-profundo); }
 
@@ -99,14 +102,13 @@
             font-size: 0.65rem; letter-spacing: 4px; font-weight: 600;
             border: 2px double rgba(255,255,255,0.4); 
             transition: all 0.3s ease-in-out;
-            backface-visibility: hidden;
         }
         .insta-tattoo-button:hover {
             border-color: #fff; background: #fff; color: #000;
             box-shadow: 0 0 25px rgba(255,255,255,0.15);
         }
 
-        /* --- MAPA --- */
+        /* --- UBICACIÓN --- */
         .map-section { background: var(--blanco-hueso); padding: 80px 5%; text-align: center; color: var(--negro-profundo); }
         .map-container { max-width: 1000px; margin: 30px auto; height: 450px; border-radius: 4px; overflow: hidden; border: 1px solid #ddd; }
         iframe { width: 100%; height: 100%; border: none; }
@@ -183,18 +185,17 @@
 
     <section class="map-section" id="ubicacion">
         <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;">Visítanos</h2>
-        <p style="margin-top: 10px; opacity: 0.7;">Jacarandas 11, 3 de Mayo, 54760 Cuautitlán Izcalli, Méx.</p>
+        <p style="margin-top: 10px; opacity: 0.7;">Cedros 7, 3 de Mayo, 54760 Cuautitlán Izcalli, Méx.</p>
         
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.980644322473!2d-99.19507982404172!3d19.66016168166928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f568973633bd%3A0x567f9824a114d5b8!2sJacarandas%2011%2C%203%20de%20Mayo%2C%2054760%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3757.291771120404!2d-99.2375845242408!3d19.620919181699564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21e81973633bf%3A0x607f9824a114d5b8!2sCedros%207%2C%203%20de%20Mayo%2C%2054760%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" 
                 allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
+                loading="lazy">
             </iframe>
         </div>
         
-        <a href="https://maps.app.goo.gl/o6Gv1fV6XNAn7UuK7" target="_blank" class="cta-button">
+        <a href="https://maps.app.goo.gl/9yX8D8zE9D8zE9D8z" target="_blank" class="map-btn">
             Cómo llegar (Google Maps)
         </a>
     </section>
