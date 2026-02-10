@@ -13,7 +13,6 @@
             --blanco-hueso: #fdfdfd; 
             --negro-profundo: #050505; 
             --gris-oscuro: #0a0a0a;
-            --acento: #ffffff;
             --glass: rgba(255, 255, 255, 0.03);
         }
 
@@ -28,12 +27,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- OVERLAY DE TEXTURA --- */
+        /* --- OVERLAY DE TEXTURA (GRANO) --- */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.15; pointer-events: none; z-index: 9999;
+            opacity: 0.12; pointer-events: none; z-index: 9999;
         }
 
         /* --- NAVEGACIÓN --- */
@@ -50,8 +49,8 @@
             opacity: 0.6;
         }
         nav a:hover { opacity: 1; letter-spacing: 5px; }
-        .nav-logo { height: 65px; width: auto; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .nav-logo:hover { transform: scale(1.1) rotate(5deg); }
+        .nav-logo { height: 60px; width: auto; transition: 0.5s ease; }
+        .nav-logo:hover { transform: scale(1.1); }
 
         /* --- HERO --- */
         .hero {
@@ -62,14 +61,14 @@
         }
         .hero h1 { 
             font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 15vw, 9rem); 
-            letter-spacing: 25px; text-transform: uppercase; font-weight: 600;
-            background: linear-gradient(to bottom, #fff 40%, #555 100%);
+            letter-spacing: 20px; text-transform: uppercase; font-weight: 600;
+            background: linear-gradient(to bottom, #fff 30%, #666 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8));
         }
-        .hero p { letter-spacing: 15px; font-weight: 100; opacity: 0.5; margin-top: -10px; text-transform: uppercase; font-size: 0.7rem; }
+        .hero p { letter-spacing: 12px; font-weight: 100; opacity: 0.5; margin-top: -10px; text-transform: uppercase; font-size: 0.75rem; }
 
-        /* --- PORTAFOLIO (PAPEL VIEJO) --- */
+        /* --- PORTAFOLIO --- */
         .section-white { 
             background-color: #f4f4f4; 
             background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
@@ -78,66 +77,85 @@
         .section-title { 
             text-align: center; font-family: 'Cormorant Garamond', serif; 
             font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; margin-bottom: 60px; 
-            letter-spacing: 15px; text-transform: uppercase;
+            letter-spacing: 12px; text-transform: uppercase;
         }
-        .slider-container { display: flex; gap: 25px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
+        .slider-container { display: flex; gap: 20px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
+        .slider-container::-webkit-scrollbar { display: none; }
         .slide-item { 
             min-width: 350px; height: 500px; flex-shrink: 0; overflow: hidden; 
-            box-shadow: 25px 25px 50px rgba(0,0,0,0.15); transition: 0.6s ease;
+            box-shadow: 20px 20px 40px rgba(0,0,0,0.1); transition: 0.6s ease;
         }
-        .slide-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.9); transition: 1s ease; }
-        .slide-item:hover { transform: translateY(-15px) scale(1.02); }
-        .slide-item:hover img { filter: grayscale(0%) brightness(1); }
+        .slide-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 1s ease; }
+        .slide-item:hover { transform: translateY(-10px); }
+        .slide-item:hover img { filter: grayscale(0%); }
 
         /* --- VIDEOS --- */
         .video-section { padding: 120px 5%; text-align: center; background: var(--negro-profundo); }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .video-card { border: 1px solid rgba(255,255,255,0.05); transition: 0.5s; overflow: hidden; }
-        .video-card video { width: 100%; filter: brightness(0.4); transition: 0.8s; }
-        .video-card:hover video { filter: brightness(1); transform: scale(1.05); }
+        .video-card { border: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: 0.8s; cursor: pointer; }
+        .video-card:hover video { filter: brightness(1); transform: scale(1.03); }
 
         /* --- ARTISTA (GLASSMORPHISM) --- */
-        .artist-section { padding: 150px 5%; background-color: #080808; border-top: 1px solid #111; }
+        .artist-section { padding: 150px 5%; background-color: #080808; text-align: center; }
         .artist-card { 
             max-width: 500px; margin: 0 auto; padding: 80px 40px; 
             background: var(--glass); border: 1px solid rgba(255,255,255,0.08); 
-            backdrop-filter: blur(15px); border-radius: 2px;
+            backdrop-filter: blur(15px); border-radius: 4px;
         }
         .artist-photo { 
             width: 180px; height: 180px; border-radius: 50%; object-fit: cover; 
-            margin-bottom: 35px; filter: grayscale(100%); border: 1px solid rgba(255,255,255,0.3);
-            padding: 10px; transition: 0.8s;
+            margin-bottom: 35px; filter: grayscale(100%); border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px; transition: 0.8s;
         }
-        .artist-card:hover .artist-photo { filter: grayscale(0%); border-color: #fff; transform: rotate(5deg); }
-        .artist-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; letter-spacing: 8px; text-transform: uppercase; margin-bottom: 10px; }
+        .artist-card:hover .artist-photo { filter: grayscale(0%); border-color: #fff; transform: scale(1.05); }
+        .artist-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 5px; }
+        .artist-role { font-size: 0.7rem; letter-spacing: 5px; color: #666; text-transform: uppercase; margin-bottom: 40px; }
 
         /* --- BOTONES --- */
         .btn-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .cta-button { 
-            display: inline-block; width: 100%; max-width: 300px; padding: 22px; 
+            display: inline-block; width: 100%; max-width: 300px; padding: 20px; 
             border: 1px solid var(--blanco-hueso); text-decoration: none; 
             color: var(--blanco-hueso); text-transform: uppercase; 
-            letter-spacing: 5px; font-size: 0.7rem; transition: 0.4s; font-weight: 600;
+            letter-spacing: 4px; font-size: 0.7rem; transition: 0.4s; font-weight: 600;
         }
-        .cta-button:hover { background: var(--blanco-hueso); color: var(--negro-profundo); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+        .cta-button:hover { background: var(--blanco-hueso); color: var(--negro-profundo); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
 
         .insta-tattoo-button {
-            display: inline-block; width: 100%; max-width: 300px; padding: 20px;
+            display: inline-block; width: 100%; max-width: 300px; padding: 18px;
             background: transparent; color: #fff; text-decoration: none;
-            font-size: 0.7rem; letter-spacing: 5px; font-weight: 600;
-            border: 2px double rgba(255,255,255,0.4); transition: 0.4s;
+            font-size: 0.7rem; letter-spacing: 4px; font-weight: 600;
+            border: 2px double rgba(255,255,255,0.3); transition: 0.4s;
         }
         .insta-tattoo-button:hover { border-color: #fff; background: #fff; color: #000; }
 
-        /* --- UBICACIÓN --- */
+        /* --- SECCIÓN MAPA CORREGIDA --- */
         .map-section { background: #f4f4f4; padding: 120px 5%; text-align: center; color: var(--negro-profundo); }
-        .map-container { max-width: 1100px; margin: 40px auto; height: 500px; border: 15px solid #fff; box-shadow: 0 40px 80px rgba(0,0,0,0.1); }
+        .map-container { 
+            max-width: 1000px; 
+            margin: 40px auto; 
+            height: 500px; 
+            border: 10px solid #fff; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1); 
+            position: relative;
+            overflow: hidden;
+            background: #eee;
+        }
+        .map-container iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: 0; 
+            filter: grayscale(1) contrast(1.2) invert(0.9); /* Filtro pro: Blanco y Negro invertido para look luxury */
+        }
         
-        footer { padding: 100px 40px; text-align: center; background: #000; color: #444; letter-spacing: 6px; font-size: 0.65rem; }
+        footer { padding: 80px 40px; text-align: center; background: #000; color: #333; letter-spacing: 5px; font-size: 0.6rem; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 4rem; letter-spacing: 12px; }
-            .nav-container { gap: 20px; }
+            .hero h1 { font-size: 3.5rem; letter-spacing: 10px; }
+            .nav-container { gap: 15px; }
+            .nav-logo { height: 45px; }
+            .map-container { height: 350px; border: 5px solid #fff; }
             .slide-item { min-width: 280px; height: 400px; }
         }
     </style>
@@ -169,7 +187,7 @@
     </section>
 
     <section class="video-section">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase;">Procesos</h2>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase;">Procesos</h2>
         <div class="video-grid">
             <div class="video-card"><video src="video1.mp4" autoplay muted loop playsinline></video></div>
             <div class="video-card"><video src="video2.mp4" autoplay muted loop playsinline></video></div>
@@ -181,38 +199,39 @@
         <div class="artist-card">
             <img src="pato.jpg" alt="Pato Artist" class="artist-photo" onerror="this.src='https://via.placeholder.com/300/111/fff?text=PATO'">
             <h3 class="artist-name">Pato</h3>
-            <p class="artist-role" style="letter-spacing: 6px; color: #888; font-size: 0.7rem; margin-bottom: 40px;">Especialista en Caligrafía y Blackwork</p>
+            <p class="artist-role">Tattoo Artist Specialist</p>
             
             <div class="btn-container">
                 <a href="https://wa.me/5215611828680?text=Hola,%20vi%20la%20página%20y%20quiero%20agendar%20con%20Pato" target="_blank" class="cta-button">
                     Agendar Cita
                 </a>
                 <a href="https://www.instagram.com/inked_studi0/" target="_blank" class="insta-tattoo-button">
-                    VER INSTAGRAM
+                    INSTAGRAM
                 </a>
             </div>
         </div>
     </section>
 
     <section class="map-section" id="ubicacion">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; letter-spacing: 10px; text-transform: uppercase;">Visítanos</h2>
-        <p style="margin: 20px 0 40px; opacity: 0.6; font-weight: 300; letter-spacing: 2px;">Jacarandas 11, 3 de Mayo, Cuautitlán Izcalli, Méx.</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; text-transform: uppercase;">Visítanos</h2>
+        <p style="margin: 15px 0 40px; opacity: 0.6; font-weight: 300; letter-spacing: 2px; font-size: 0.9rem;">Jacarandas 11, 3 de Mayo, Cuautitlán Izcalli, Méx.</p>
         
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.2345!2d-99.2156!3d19.6645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDM5JzUyLjIiTiA5OcKwMTInNTYuMiJX!5e0!3m2!1ses!2smx!4v1700000000000" 
-                allowfullscreen="" loading="lazy">
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.4026365042894!2d-99.2084534!3d19.6954848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21f92e42f6f4d%3A0xc66596160910058b!2sJacarandas%2011%2C%203%20de%20Mayo%2C%2054760%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700000000000" 
+                allowfullscreen="" 
+                loading="lazy">
             </iframe>
         </div>
         
-        <a href="https://maps.google.com" target="_blank" class="cta-button" style="color: black; border-color: black;">
-            Abrir en Maps
+        <a href="https://maps.app.goo.gl/kX7L1qHnFmP2" target="_blank" class="cta-button" style="color: black; border-color: black; margin-top: 20px;">
+            Cómo llegar (Google Maps)
         </a>
     </section>
 
     <footer>
         <p>INKED STUDIO • MMXXVI</p>
-        <p style="margin-top: 15px; opacity: 0.3; font-size: 0.55rem; font-weight: 700;">FOR THE BOLD & THE SOULFUL</p>
+        <p style="margin-top: 10px; opacity: 0.2; font-size: 0.5rem;">DESIGNED FOR THE BOLD</p>
     </footer>
 
 </body>
