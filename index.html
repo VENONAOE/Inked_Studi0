@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inked Studio | Tinta y Caligrafía</title>
     
-    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Inter:wght@100;300;600&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="aos.css">
     
     <style>
         :root { 
@@ -16,7 +17,7 @@
             --negro-suave: #0a0a0a;
             --gris-texto: #666;
             --glass: rgba(255, 255, 255, 0.03);
-            --cursor-size: 15px; /* Tamaño del cursor personalizado */
+            --cursor-size: 15px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,10 +29,10 @@
             color: var(--blanco-hueso); 
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            cursor: none; /* OCULTA EL CURSOR ESTÁNDAR */
+            cursor: none; /* Oculta el cursor real */
         }
 
-        /* Capa de textura de grano sobre toda la web */
+        /* Textura de grano */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -41,30 +42,11 @@
 
         /* --- CURSOR PERSONALIZADO --- */
         .custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--cursor-size);
-            height: var(--cursor-size);
-            background-color: var(--blanco-hueso);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000; /* Asegura que esté encima de todo */
-            opacity: 0.7;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s ease-out, height 0.2s ease-out, opacity 0.2s ease-out;
+            position: fixed; top: 0; left: 0; width: var(--cursor-size); height: var(--cursor-size);
+            background-color: var(--blanco-hueso); border-radius: 50%; pointer-events: none;
+            z-index: 10000; opacity: 0.7; transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, opacity 0.2s, background-color 0.2s;
         }
-        /* Efecto al pasar sobre elementos interactivos */
-        a:hover + .custom-cursor,
-        button:hover + .custom-cursor,
-        .slide-item:hover + .custom-cursor,
-        .video-card:hover + .custom-cursor {
-            width: var(--cursor-size); /* Se mantiene pequeño */
-            height: var(--cursor-size);
-            opacity: 1;
-            background-color: #f78d59; /* Color de interacción */
-        }
-
 
         /* --- NAVEGACIÓN --- */
         nav { 
@@ -76,8 +58,7 @@
         .nav-container { display: flex; align-items: center; gap: 40px; }
         nav a { 
             color: var(--blanco-hueso); text-decoration: none; font-size: 0.65rem; 
-            text-transform: uppercase; letter-spacing: 3px; font-weight: 300; transition: 0.4s; 
-            opacity: 0.6;
+            text-transform: uppercase; letter-spacing: 3px; font-weight: 300; transition: 0.4s; opacity: 0.6;
         }
         nav a:hover { opacity: 1; letter-spacing: 4px; }
         .nav-logo { height: 55px; width: auto; }
@@ -97,162 +78,58 @@
         }
         .hero p { letter-spacing: 10px; font-weight: 100; opacity: 0.5; font-size: 0.75rem; text-transform: uppercase; }
 
-        /* --- SECCIÓN DE FILOSOFÍA (NUEVA) --- */
-        .philosophy-section {
-            padding: 150px 5%;
-            background-color: var(--negro-suave);
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .philosophy-section p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            letter-spacing: 5px;
-            font-weight: 300;
-            line-height: 1.4;
-            max-width: 900px;
-            margin: 0 auto;
-            color: #ccc;
-            opacity: 0.9;
-        }
-        .philosophy-section p strong {
-            font-weight: 600;
-            color: var(--blanco-hueso);
-        }
+        /* --- FILOSOFÍA --- */
+        .philosophy-section { padding: 150px 5%; background-color: var(--negro-suave); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .philosophy-section p { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 4vw, 3rem); letter-spacing: 5px; font-weight: 300; line-height: 1.4; max-width: 900px; margin: 0 auto; color: #ccc; }
+        .philosophy-section p strong { color: var(--blanco-hueso); font-weight: 600; }
 
-        /* --- CARRUSEL INFINITO --- */
-        .section-white { 
-            background-color: #f9f9f9; 
-            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
-            padding: 100px 0; overflow: hidden;
-            position: relative;
-        }
-        .section-title-dark { 
-            text-align: center; color: #000; font-family: 'Cormorant Garamond', serif; 
-            font-size: 3rem; letter-spacing: 10px; margin-bottom: 60px; text-transform: uppercase;
-        }
-        
-        .slider {
-            display: flex;
-            width: calc(350px * 12); /* Doble del número de fotos para el loop */
-            animation: scroll 30s linear infinite;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-350px * 6)); }
-        }
-
-        .slider:hover { animation-play-state: paused; }
-
-        .slide-item { 
-            width: 350px; height: 500px; padding: 0 15px; flex-shrink: 0; 
-        }
-        .slide-item img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: grayscale(100%); transition: 0.8s ease;
-            box-shadow: 15px 15px 40px rgba(0,0,0,0.1);
-        }
+        /* --- PORTAFOLIO SLIDER --- */
+        .section-white { background-color: #f9f9f9; background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'); padding: 100px 0; overflow: hidden; }
+        .section-title-dark { text-align: center; color: #000; font-family: 'Cormorant Garamond', serif; font-size: 3rem; letter-spacing: 10px; margin-bottom: 60px; text-transform: uppercase; }
+        .slider { display: flex; width: calc(350px * 12); animation: scroll 30s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-350px * 6)); } }
+        .slide-item { width: 350px; height: 500px; padding: 0 15px; flex-shrink: 0; }
+        .slide-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.8s ease; }
         .slide-item:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
-        /* --- VIDEOS (TAMAÑO REEL) --- */
+        /* --- VIDEOS --- */
         .video-section { padding: 120px 5%; background: var(--negro-profundo); text-align: center; }
-        .video-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
-            gap: 30px; max-width: 1400px; margin: 60px auto 0;
-        }
-        .video-card { 
-            height: 750px; overflow: hidden; background: #000;
-            border: 1px solid rgba(255,255,255,0.05); position: relative;
-        }
-        .video-card video { 
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: brightness(0.6); transition: 0.8s; 
-        }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1400px; margin: 60px auto 0; }
+        .video-card { height: 600px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: 0.8s; }
         .video-card:hover video { filter: brightness(1); transform: scale(1.05); }
 
         /* --- ARTISTA --- */
         .artist-section { padding: 120px 5%; background: var(--negro-suave); text-align: center; }
-        .artist-card { 
-            max-width: 500px; margin: 0 auto; padding: 70px 40px; 
-            background: var(--glass); border: 1px solid rgba(255,255,255,0.05); 
-            backdrop-filter: blur(15px);
-        }
-        .artist-photo { 
-            width: 160px; height: 160px; border-radius: 50%; object-fit: cover; 
-            margin-bottom: 30px; filter: grayscale(1); border: 1px solid #333; padding: 5px;
-        }
+        .artist-card { max-width: 500px; margin: 0 auto; padding: 70px 40px; background: var(--glass); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(15px); }
+        .artist-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; filter: grayscale(1); border: 1px solid #333; }
         .artist-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; letter-spacing: 5px; text-transform: uppercase; }
 
         /* --- BOTONES --- */
-        .btn-container { margin-top: 40px; }
-        .cta-button { 
-            display: inline-block; width: 100%; max-width: 300px; padding: 20px; 
-            border: 1px solid #fff; color: #fff; text-decoration: none; 
-            text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; transition: 0.4s;
-        }
+        .cta-button { display: inline-block; width: 100%; max-width: 300px; padding: 20px; border: 1px solid #fff; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; transition: 0.4s; }
         .cta-button:hover { background: #fff; color: #000; }
-        .insta-link { display: block; margin-top: 20px; color: var(--gris-texto); font-size: 0.6rem; letter-spacing: 3px; text-decoration: none; }
-        .insta-link:hover { color: #fff; }
 
         /* --- MAPA --- */
         .map-section { padding: 120px 5%; background: #000; text-align: center; }
-        .map-container { 
-            max-width: 1100px; margin: 40px auto; height: 500px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-        }
-        .map-container iframe { 
-            width: 100%; height: 100%; border: 0; 
-            filter: grayscale(1) invert(0.9) contrast(1.2); 
-        }
+        .map-container { max-width: 1100px; margin: 40px auto; height: 500px; border: 1px solid rgba(255,255,255,0.1); }
+        .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.9) contrast(1.2); }
         
-        footer { padding: 80px; text-align: center; color: #222; font-size: 0.6rem; letter-spacing: 5px; }
-
-        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        /* --- WHATSAPP FLOTANTE --- */
         .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            display: flex; justify-content: center; align-items: center; font-size: 30px;
+            z-index: 1000; text-decoration: none; transition: 0.3s;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #1DA851;
-        }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #1DA851; }
 
-        /* RESPONSIVE */
+        footer { padding: 80px; text-align: center; color: #333; font-size: 0.6rem; letter-spacing: 5px; }
+
         @media (max-width: 768px) {
             .nav-container { gap: 20px; }
-            .nav-logo { height: 45px; }
-            .philosophy-section p { font-size: 1.2rem; letter-spacing: 3px; }
-            .video-card { height: 600px; }
+            .hero h1 { font-size: 4rem; }
             .video-grid { grid-template-columns: 1fr; }
-            .slide-item { width: 300px; height: 420px; }
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(calc(-300px * 6)); }
-            }
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 25px;
-                bottom: 20px;
-                right: 20px;
-            }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px; }
         }
     </style>
 </head>
@@ -269,26 +146,26 @@
     </nav>
 
     <section class="hero" id="inicio">
-        <h1 data-aos="fade-up" data-aos-duration="1000">INKED STUDIO</h1>
-        <p data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">EL ARTE DE LA PIEL • MÉXICO</p>
+        <h1 data-aos="fade-up">INKED STUDIO</h1>
+        <p data-aos="fade-up" data-aos-delay="300">EL ARTE DE LA PIEL • MÉXICO</p>
     </section>
 
     <section class="philosophy-section">
-        <p data-aos="fade-up" data-aos-duration="1000">
+        <p data-aos="fade-up">
             En <strong>Inked Studio</strong>, no solo grabamos piel, 
             <br>inmortalizamos <strong>historias</strong> y creamos arte que perdura.
         </p>
     </section>
 
     <section class="section-white" id="fotos">
-        <h2 class="section-title-dark" data-aos="fade-up" data-aos-duration="1000">Portafolio</h2>
+        <h2 class="section-title-dark" data-aos="fade-up">Portafolio</h2>
         <div class="slider">
-            <div class="slide-item" data-aos="fade-up" data-aos-delay="100"><img src="tattoo1.jpg" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600'"></div>
-            <div class="slide-item" data-aos="fade-up" data-aos-delay="200"><img src="tattoo2.jpg" onerror="this.src='https://images.unsplash.com/photo-1590201841217-07446273e896?w=600'"></div>
-            <div class="slide-item" data-aos="fade-up" data-aos-delay="300"><img src="tattoo3.jpg" onerror="this.src='https://images.unsplash.com/photo-1550537687-c91072c4792d?w=600'"></div>
-            <div class="slide-item" data-aos="fade-up" data-aos-delay="400"><img src="tattoo4.jpg" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600'"></div>
-            <div class="slide-item" data-aos="fade-up" data-aos-delay="500"><img src="tattoo5.jpg" onerror="this.src='https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=600'"></div>
-            <div class="slide-item" data-aos="fade-up" data-aos-delay="600"><img src="tattoo6.jpg" onerror="this.src='https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=600'"></div>
+            <div class="slide-item"><img src="tattoo1.jpg" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600'"></div>
+            <div class="slide-item"><img src="tattoo2.jpg" onerror="this.src='https://images.unsplash.com/photo-1590201841217-07446273e896?w=600'"></div>
+            <div class="slide-item"><img src="tattoo3.jpg" onerror="this.src='https://images.unsplash.com/photo-1550537687-c91072c4792d?w=600'"></div>
+            <div class="slide-item"><img src="tattoo4.jpg" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600'"></div>
+            <div class="slide-item"><img src="tattoo5.jpg" onerror="this.src='https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=600'"></div>
+            <div class="slide-item"><img src="tattoo6.jpg" onerror="this.src='https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=600'"></div>
             <div class="slide-item"><img src="tattoo1.jpg" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600'"></div>
             <div class="slide-item"><img src="tattoo2.jpg" onerror="this.src='https://images.unsplash.com/photo-1590201841217-07446273e896?w=600'"></div>
             <div class="slide-item"><img src="tattoo3.jpg" onerror="this.src='https://images.unsplash.com/photo-1550537687-c91072c4792d?w=600'"></div>
@@ -299,7 +176,7 @@
     </section>
 
     <section class="video-section">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; text-transform: uppercase;" data-aos="fade-up" data-aos-duration="1000">Procesos</h2>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; text-transform: uppercase;" data-aos="fade-up">Procesos</h2>
         <div class="video-grid">
             <div class="video-card" data-aos="fade-up" data-aos-delay="100"><video src="video1.mp4" autoplay muted loop playsinline></video></div>
             <div class="video-card" data-aos="fade-up" data-aos-delay="200"><video src="video2.mp4" autoplay muted loop playsinline></video></div>
@@ -308,68 +185,51 @@
     </section>
 
     <section class="artist-section" id="artistas">
-        <div class="artist-card" data-aos="fade-up" data-aos-duration="1000">
-            <img src="pato.jpg" alt="Pato" class="artist-photo" onerror="this.src='https://via.placeholder.com/300/111/fff?text=PATO'">
+        <div class="artist-card" data-aos="fade-up">
+            <img src="pato.jpg" alt="Pato" class="artist-photo" onerror="this.src='https://via.placeholder.com/160/222/fff?text=PATO'">
             <h3 class="artist-name">Pato</h3>
             <p style="letter-spacing: 5px; color: var(--gris-texto); text-transform: uppercase; font-size: 0.7rem;">Artista Principal</p>
-            <div class="btn-container">
+            <div style="margin-top: 40px;">
                 <a href="https://wa.me/5215611828680" target="_blank" class="cta-button">Cotizar por WhatsApp</a>
-                <a href="https://www.instagram.com/inked_studi0/" target="_blank" class="insta-link">VER MÁS EN INSTAGRAM</a>
             </div>
         </div>
     </section>
 
     <section class="map-section" id="ubicacion">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 8px; text-transform: uppercase;" data-aos="fade-up" data-aos-duration="1000">Ubicación</h2>
-        <p style="margin: 15px 0 40px; opacity: 0.5; font-size: 0.7rem; letter-spacing: 2px;" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Jacarandas 11, Col. 3 de Mayo, Cuautitlán Izcalli</p>
-        <div class="map-container" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 8px; text-transform: uppercase;" data-aos="fade-up">Ubicación</h2>
+        <p style="margin: 15px 0 40px; opacity: 0.5; font-size: 0.7rem; letter-spacing: 2px;">Jacarandas 11, Col. 3 de Mayo, Cuautitlán Izcalli</p>
+        <div class="map-container" data-aos="zoom-in">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.123!2d-99.215!3d19.645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDM4JzQyLjAiTiA5OcKwMTInNTQuMCJX!5e0!3m2!1ses!2smx!4v1715678901234!5m2!1ses!2smx" 
-                allowfullscreen="" loading="lazy">
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.5350311740645!2d-99.2066986!3d19.6898492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21f3796590209%3A0xc3f982142e03f905!2sJacarandas%2011%2C%203%20de%20Mayo%2C%2054769%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
     </section>
 
-    <footer>
-        <p>INKED STUDIO • 2024</p>
-    </footer>
+    <footer><p>INKED STUDIO • 2024</p></footer>
 
-    <a href="https://wa.me/5215611828680?text=Hola,%20quisiera%20cotizar%20un%20tatuaje." class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/5215611828680" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="aos.js"></script>
     <script>
-        AOS.init({
-            once: true, // Animaciones solo una vez
-            duration: 800, // Duración de la animación
+        AOS.init({ once: true, duration: 1000 });
+
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
 
-        // Script para el cursor personalizado
-        const customCursor = document.querySelector('.custom-cursor');
-        document.addEventListener('mousemove', (e) => {
-            customCursor.style.left = e.clientX + 'px';
-            customCursor.style.top = e.clientY + 'px';
-        });
-
-        // Efecto del cursor al pasar sobre enlaces
-        const interactiveElements = document.querySelectorAll('a, button, .slide-item, .video-card, .whatsapp-float');
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                customCursor.style.width = '30px';
-                customCursor.style.height = '30px';
-                customCursor.style.opacity = '0.9';
-                customCursor.style.backgroundColor = '#f78d59'; /* Color de interacción */
+        document.querySelectorAll('a, .slide-item, .video-card, .whatsapp-float').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '40px'; cursor.style.height = '40px'; 
+                cursor.style.backgroundColor = 'rgba(255,255,255,0.2)'; cursor.style.opacity = '1';
             });
-            element.addEventListener('mouseleave', () => {
-                customCursor.style.width = 'var(--cursor-size)';
-                customCursor.style.height = 'var(--cursor-size)';
-                customCursor.style.opacity = '0.7';
-                customCursor.style.backgroundColor = 'var(--blanco-hueso)';
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '15px'; cursor.style.height = '15px'; 
+                cursor.style.backgroundColor = '#fdfdfd'; cursor.style.opacity = '0.7';
             });
         });
-
     </script>
-
 </body>
 </html>
