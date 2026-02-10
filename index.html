@@ -27,7 +27,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- OVERLAY DE TEXTURA (GRANO) --- */
+        /* --- TEXTURA DE FONDO --- */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -50,7 +50,6 @@
         }
         nav a:hover { opacity: 1; letter-spacing: 5px; }
         .nav-logo { height: 60px; width: auto; transition: 0.5s ease; }
-        .nav-logo:hover { transform: scale(1.1); }
 
         /* --- HERO --- */
         .hero {
@@ -64,98 +63,85 @@
             letter-spacing: 20px; text-transform: uppercase; font-weight: 600;
             background: linear-gradient(to bottom, #fff 30%, #666 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8));
         }
         .hero p { letter-spacing: 12px; font-weight: 100; opacity: 0.5; margin-top: -10px; text-transform: uppercase; font-size: 0.75rem; }
 
-        /* --- PORTAFOLIO --- */
+        /* --- PORTAFOLIO (CARRUSEL) --- */
         .section-white { 
             background-color: #f4f4f4; 
             background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
-            color: var(--negro-profundo); padding: 120px 0; 
+            color: var(--negro-profundo); padding: 120px 0; overflow: hidden;
         }
         .section-title { 
             text-align: center; font-family: 'Cormorant Garamond', serif; 
             font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; margin-bottom: 60px; 
             letter-spacing: 12px; text-transform: uppercase;
         }
-        .slider-container { display: flex; gap: 20px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
+        .slider-container { 
+            display: flex; gap: 25px; overflow-x: auto; padding: 20px 5% 60px; 
+            scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        }
         .slider-container::-webkit-scrollbar { display: none; }
         .slide-item { 
-            min-width: 350px; height: 500px; flex-shrink: 0; overflow: hidden; 
+            min-width: 320px; height: 480px; flex-shrink: 0; overflow: hidden; 
             box-shadow: 20px 20px 40px rgba(0,0,0,0.1); transition: 0.6s ease;
         }
         .slide-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 1s ease; }
-        .slide-item:hover { transform: translateY(-10px); }
+        .slide-item:hover { transform: translateY(-15px) scale(1.02); }
         .slide-item:hover img { filter: grayscale(0%); }
 
         /* --- VIDEOS --- */
         .video-section { padding: 120px 5%; text-align: center; background: var(--negro-profundo); }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .video-card { border: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
-        .video-card video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: 0.8s; cursor: pointer; }
-        .video-card:hover video { filter: brightness(1); transform: scale(1.03); }
+        .video-card { border: 1px solid rgba(255,255,255,0.05); overflow: hidden; height: 500px; }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: 0.8s; }
+        .video-card:hover video { filter: brightness(1); }
 
-        /* --- ARTISTA (GLASSMORPHISM) --- */
+        /* --- ARTISTA --- */
         .artist-section { padding: 150px 5%; background-color: #080808; text-align: center; }
         .artist-card { 
             max-width: 500px; margin: 0 auto; padding: 80px 40px; 
             background: var(--glass); border: 1px solid rgba(255,255,255,0.08); 
-            backdrop-filter: blur(15px); border-radius: 4px;
+            backdrop-filter: blur(15px);
         }
         .artist-photo { 
             width: 180px; height: 180px; border-radius: 50%; object-fit: cover; 
             margin-bottom: 35px; filter: grayscale(100%); border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px; transition: 0.8s;
+            padding: 8px;
         }
-        .artist-card:hover .artist-photo { filter: grayscale(0%); border-color: #fff; transform: scale(1.05); }
-        .artist-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 5px; }
-        .artist-role { font-size: 0.7rem; letter-spacing: 5px; color: #666; text-transform: uppercase; margin-bottom: 40px; }
+        .artist-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; letter-spacing: 5px; text-transform: uppercase; }
 
         /* --- BOTONES --- */
-        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 30px; }
         .cta-button { 
             display: inline-block; width: 100%; max-width: 300px; padding: 20px; 
             border: 1px solid var(--blanco-hueso); text-decoration: none; 
             color: var(--blanco-hueso); text-transform: uppercase; 
             letter-spacing: 4px; font-size: 0.7rem; transition: 0.4s; font-weight: 600;
         }
-        .cta-button:hover { background: var(--blanco-hueso); color: var(--negro-profundo); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
-
-        .insta-tattoo-button {
-            display: inline-block; width: 100%; max-width: 300px; padding: 18px;
-            background: transparent; color: #fff; text-decoration: none;
-            font-size: 0.7rem; letter-spacing: 4px; font-weight: 600;
-            border: 2px double rgba(255,255,255,0.3); transition: 0.4s;
+        .cta-button:hover { background: var(--blanco-hueso); color: var(--negro-profundo); }
+        .insta-button { 
+            text-decoration: none; color: #666; font-size: 0.7rem; letter-spacing: 4px; transition: 0.4s;
         }
-        .insta-tattoo-button:hover { border-color: #fff; background: #fff; color: #000; }
+        .insta-button:hover { color: #fff; }
 
-        /* --- SECCIÓN MAPA CORREGIDA --- */
-        .map-section { background: #f4f4f4; padding: 120px 5%; text-align: center; color: var(--negro-profundo); }
+        /* --- MAPA --- */
+        .map-section { background: #000; padding: 120px 5%; text-align: center; }
         .map-container { 
-            max-width: 1000px; 
-            margin: 40px auto; 
-            height: 500px; 
-            border: 10px solid #fff; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1); 
-            position: relative;
-            overflow: hidden;
-            background: #eee;
+            max-width: 1100px; margin: 40px auto; height: 500px; 
+            border: 1px solid rgba(255,255,255,0.1); overflow: hidden;
         }
         .map-container iframe { 
-            width: 100%; 
-            height: 100%; 
-            border: 0; 
-            filter: grayscale(1) contrast(1.2) invert(0.9); /* Filtro pro: Blanco y Negro invertido para look luxury */
+            width: 100%; height: 100%; border: 0; 
+            filter: grayscale(1) invert(0.92) contrast(1.2); 
         }
         
-        footer { padding: 80px 40px; text-align: center; background: #000; color: #333; letter-spacing: 5px; font-size: 0.6rem; }
+        footer { padding: 80px 40px; text-align: center; background: #000; color: #222; letter-spacing: 5px; font-size: 0.6rem; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; letter-spacing: 10px; }
-            .nav-container { gap: 15px; }
+            .nav-container { gap: 20px; }
             .nav-logo { height: 45px; }
-            .map-container { height: 350px; border: 5px solid #fff; }
+            .slider-container { gap: 15px; }
             .slide-item { min-width: 280px; height: 400px; }
         }
     </style>
@@ -166,8 +152,7 @@
         <div class="nav-container">
             <a href="#fotos">Galería</a>
             <a href="#inicio"><img src="logo.png" alt="Inked Studio" class="nav-logo" onerror="this.style.display='none'"></a>
-            <a href="#artistas">Pato</a>
-            <a href="#ubicacion">Ubicación</a>
+            <a href="#ubicacion">Estudio</a>
         </div>
     </nav>
 
@@ -178,18 +163,18 @@
 
     <section class="section-white" id="fotos">
         <h2 class="section-title">Portafolio</h2>
-        <div class="slider-container">
-            <div class="slide-item"><img src="tattoo1.jpg" alt="Work 1" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=500&q=80'"></div>
-            <div class="slide-item"><img src="tattoo2.jpg" alt="Work 2" onerror="this.src='https://images.unsplash.com/photo-1590201841217-07446273e896?auto=format&fit=crop&w=500&q=80'"></div>
-            <div class="slide-item"><img src="tattoo3.jpg" alt="Work 3" onerror="this.src='https://images.unsplash.com/photo-1550537687-c91072c4792d?auto=format&fit=crop&w=500&q=80'"></div>
-            <div class="slide-item"><img src="tattoo4.jpg" alt="Work 4" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=500&q=80'"></div>
-            <div class="slide-item"><img src="tattoo5.jpg" alt="Work 5" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=500&q=80'"></div>
-            <div class="slide-item"><img src="tattoo6.jpg" alt="Work 6" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=500&q=80'"></div>
+        <div class="slider-container" id="carrusel">
+            <div class="slide-item"><img src="tattoo1.jpg" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600'"></div>
+            <div class="slide-item"><img src="tattoo2.jpg" onerror="this.src='https://images.unsplash.com/photo-1590201841217-07446273e896?w=600'"></div>
+            <div class="slide-item"><img src="tattoo3.jpg" onerror="this.src='https://images.unsplash.com/photo-1550537687-c91072c4792d?w=600'"></div>
+            <div class="slide-item"><img src="tattoo4.jpg" onerror="this.src='https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600'"></div>
+            <div class="slide-item"><img src="tattoo5.jpg" onerror="this.src='https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=600'"></div>
+            <div class="slide-item"><img src="tattoo6.jpg" onerror="this.src='https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=600'"></div>
         </div>
     </section>
 
     <section class="video-section">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase;">Procesos</h2>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; text-transform: uppercase;">Procesos</h2>
         <div class="video-grid">
             <div class="video-card"><video src="video1.mp4" autoplay muted loop playsinline></video></div>
             <div class="video-card"><video src="video2.mp4" autoplay muted loop playsinline></video></div>
@@ -199,42 +184,60 @@
 
     <section class="artist-section" id="artistas">
         <div class="artist-card">
-            <img src="pato.jpg" alt="Pato Artist" class="artist-photo" onerror="this.src='https://via.placeholder.com/300/111/fff?text=PATO'">
+            <img src="pato.jpg" alt="Pato" class="artist-photo" onerror="this.src='https://via.placeholder.com/300/111/fff?text=PATO'">
             <h3 class="artist-name">Pato</h3>
-            <p class="artist-role">Tattoo Artist Specialist</p>
-            
+            <p style="letter-spacing: 5px; color: #666; text-transform: uppercase; font-size: 0.7rem;">Tattoo Artist Specialist</p>
             <div class="btn-container">
-                <a href="https://wa.me/5215611828680?text=Hola,%20vi%20la%20página%20y%20quiero%20agendar%20con%20Pato" target="_blank" class="cta-button">
-                    Agendar Cita
-                </a>
-                <a href="https://www.instagram.com/inked_studi0/" target="_blank" class="insta-tattoo-button">
-                    INSTAGRAM
-                </a>
+                <a href="https://wa.me/5215611828680" target="_blank" class="cta-button">Agendar Cita</a>
+                <a href="https://www.instagram.com/inked_studi0/" target="_blank" class="insta-button">SIGUE NUESTRO ARTE EN INSTAGRAM</a>
             </div>
         </div>
     </section>
 
     <section class="map-section" id="ubicacion">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; text-transform: uppercase;">Visítanos</h2>
-        <p style="margin: 15px 0 40px; opacity: 0.6; font-weight: 300; letter-spacing: 2px; font-size: 0.9rem;">Jacarandas 11, 3 de Mayo, Cuautitlán Izcalli, Méx.</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; text-transform: uppercase;">Ubicación</h2>
+        <p style="margin: 15px 0 40px; opacity: 0.4; font-weight: 300; letter-spacing: 2px; font-size: 0.8rem;">Jacarandas 11, Col. 3 de Mayo, Cuautitlán Izcalli, Méx.</p>
         
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.4026365042894!2d-99.2084534!3d19.6954848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21f92e42f6f4d%3A0xc66596160910058b!2sJacarandas%2011%2C%203%20de%20Mayo%2C%2054760%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700000000000" 
-                allowfullscreen="" 
-                loading="lazy">
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.98034503798!2d-99.2066861!3d19.6601438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21f92adab4267%3A0xe838d74da9db4d88!2sJacarandas%2011%2C%203%20de%20Mayo%2C%2054710%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700000000000" 
+                allowfullscreen="" loading="lazy">
             </iframe>
         </div>
         
-        <a href="https://maps.app.goo.gl/kX7L1qHnFmP2" target="_blank" class="cta-button" style="color: black; border-color: black; margin-top: 20px;">
-            Cómo llegar (Google Maps)
+        <a href="https://www.google.com/maps/dir//Jacarandas+11,+3+de+Mayo,+54710+Cuautitl%C3%A1n+Izcalli,+M%C3%A9x." 
+           target="_blank" class="cta-button">
+            Cómo llegar
         </a>
     </section>
 
     <footer>
         <p>INKED STUDIO • MMXXVI</p>
-        <p style="margin-top: 10px; opacity: 0.2; font-size: 0.5rem;">DESIGNED FOR THE BOLD</p>
+        <p style="margin-top: 10px; opacity: 0.2; font-size: 0.5rem;">CRAFTED FOR THE BOLD</p>
     </footer>
+
+    <script>
+        // Auto-scroll para el carrusel
+        const slider = document.getElementById('carrusel');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => isDown = false);
+        slider.addEventListener('mouseup', () => isDown = false);
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
 
 </body>
 </html>
